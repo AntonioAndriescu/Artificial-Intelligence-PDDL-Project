@@ -1,0 +1,41 @@
+(define (domain transport)
+	
+	(:requirements :strips :action-costs :typing :negative-preconditions :equality)
+
+	(:types
+		car
+		city
+		truck
+	)
+
+	(:predicates 
+		(at ?obj - car ?loc - city)
+		(in ?obj - car ?trk - truck)
+		(incity ?trk - truck ?loc - city)
+		(incarcat ?t - truck )
+	)
+	
+	(:functions
+		(DISTANTA ?loc1 - city ?loc2 - city) - number
+		(total-cost) - number
+	)
+	
+	(:action load-vehicle
+    		:parameters (?obj - car ?trk - truck ?loc - city)
+    		:precondition (and (incity ?trk ?loc) (at ?obj ?loc) (not (incarcat ?trk)))
+    		:effect (and (not (at ?obj ?loc)) (in ?obj ?trk) (incarcat ?trk))
+  	)
+  	
+  	(:action unload-vehicle
+		:parameters (?obj - car ?trk - truck ?loc - city)
+		:precondition (and (incity ?trk ?loc) (in ?obj ?trk))
+		:effect (and (not (in ?obj ?trk)) (at ?obj ?loc) (not (incarcat ?trk)))
+	)
+	
+	(:action drive-vehicle
+		:parameters (?trk - truck ?locfrom - city ?locto - city)
+		:precondition (and (incity ?trk ?locfrom)) 
+		:effect (and (not (incity ?trk ?locfrom)) (incity ?trk ?locto) (increase (total-cost) (DISTANTA ?locfrom ?locto)))
+		
+	)
+)

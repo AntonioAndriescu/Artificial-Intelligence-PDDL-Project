@@ -1,0 +1,85 @@
+(define (problem transport_masini)
+	(:domain transport)
+	
+	(:objects 
+		car1 car2 car3 car4 car5 car6 car7 car8 - car
+		cluj piatra oradea bucuresti timisoara iasi constanta - city
+		truck - truck
+	)
+		
+	(:init 
+		(incity truck piatra)
+	
+		(at car1 cluj)
+		(at car2 piatra)
+		(at car3 timisoara)
+		(at car4 piatra)
+		(at car5 bucuresti)
+		(at car8 bucuresti)
+		(at car7 timisoara)
+		(at car6 iasi)
+		
+		(= (total-cost) 0)
+		
+		(= (DISTANTA cluj cluj) 10000)
+		(= (DISTANTA cluj piatra) 327)
+		(= (DISTANTA cluj oradea) 152)
+		(= (DISTANTA cluj bucuresti) 440)
+		(= (DISTANTA cluj timisoara) 334)
+		(= (DISTANTA cluj iasi) 427)
+		(= (DISTANTA cluj constanta) 706)
+		
+		(= (DISTANTA piatra piatra) 10000)
+		(= (DISTANTA piatra cluj) 327)
+		(= (DISTANTA piatra oradea) 479)
+		(= (DISTANTA piatra bucuresti) 342)
+		(= (DISTANTA piatra timisoara) 599)
+		(= (DISTANTA piatra iasi) 142)
+		(= (DISTANTA piatra constanta) 500)
+		
+		(= (DISTANTA oradea oradea) 10000)
+		(= (DISTANTA oradea cluj) 152)
+		(= (DISTANTA oradea piatra) 479)
+		(= (DISTANTA oradea bucuresti) 592)
+		(= (DISTANTA oradea timisoara) 168)
+		(= (DISTANTA oradea iasi) 621)
+		(= (DISTANTA oradea constanta) 858)
+		
+		(= (DISTANTA bucuresti bucuresti) 10000)
+		(= (DISTANTA bucuresti cluj) 440)
+		(= (DISTANTA bucuresti piatra) 342)
+		(= (DISTANTA bucuresti oradea) 592)
+		(= (DISTANTA bucuresti timisoara) 562)
+		(= (DISTANTA bucuresti iasi) 393)
+		(= (DISTANTA bucuresti constanta) 266)
+		
+		(= (DISTANTA timisoara timisoara) 10000)
+		(= (DISTANTA timisoara cluj) 334)
+		(= (DISTANTA timisoara piatra) 599)
+		(= (DISTANTA timisoara oradea) 168)
+		(= (DISTANTA timisoara bucuresti) 562)
+		(= (DISTANTA timisoara iasi) 734)
+		(= (DISTANTA timisoara constanta) 828)
+		
+		(= (DISTANTA iasi iasi) 10000)
+		(= (DISTANTA iasi cluj) 427)
+		(= (DISTANTA iasi piatra) 142)
+		(= (DISTANTA iasi oradea) 621)
+		(= (DISTANTA iasi bucuresti) 393)
+		(= (DISTANTA iasi timisoara) 734)
+		(= (DISTANTA iasi constanta) 430)
+
+		(= (DISTANTA constanta constanta) 10000)
+		(= (DISTANTA constanta cluj) 706)
+		(= (DISTANTA constanta piatra) 500)
+		(= (DISTANTA constanta oradea) 858)
+		(= (DISTANTA constanta bucuresti) 266)
+		(= (DISTANTA constanta timisoara) 828)
+		(= (DISTANTA constanta iasi) 430)
+	)
+	
+	(:goal (and (at car1 bucuresti) (at car2 cluj ) (at car3 cluj) (at car4 cluj) (at car5 cluj) (at car6 timisoara) (at car7 constanta) (at car8 iasi)))
+
+
+	(:metric minimize (total-cost))
+)
